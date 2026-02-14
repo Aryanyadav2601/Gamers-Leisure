@@ -1,3 +1,7 @@
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+
 # Gamers-Leisure
 🎮 A gaming community platform where players can find teammates, get tips for popular games, and grow their gaming network.
 # 🎮 GamerConnect
