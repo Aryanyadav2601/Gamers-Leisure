@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamers Leisure - Your Gaming Guide</title>
+    <link rel="stylesheet" href="gamers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>Gamers Leisure</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#contact" class="nav-link">Contact Us</a></li>
+                <li><a href="#" class="nav-link auth-btn" onclick="openAuthModal()">Login/Signup</a></li>
+            </ul>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Assistant Chatbot -->
+    <div class="ai-assistant">
+        <div class="ai-toggle" onclick="toggleAI()">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-header">
+                <h3><i class="fas fa-brain"></i> AI Guide</h3>
+                <span class="close-ai" onclick="toggleAI()">×</span>
+            </div>
+            <div class="ai-messages" id="aiMessages">
+                <div class="ai-message">
+                    <p>👋 Hey there, Gamer! I'm your AI guide. Need help finding tips for your favorite game? Just ask me anything!</p>
+                </div>
+            </div>
+            <div class="ai-input-area">
+                <input type="text" id="aiInput" placeholder="Ask me about any game..." onkeypress="handleAIInput(event)">
+                <button onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <div class="auth-close" onclick="closeAuthModal()">×</div>
+            
+            <div class="auth-toggle">
+                <button class="toggle-btn active" onclick="toggleAuthForm('login')">Login</button>
+                <button class="toggle-btn" onclick="toggleAuthForm('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+                <p class="form-text">Don't have an account? <a onclick="toggleAuthForm('signup')">Sign up here</a></p>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm">
+                <h2>Join The Community!</h2>
+                <div class="form-group">
+                    <input type="text" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Confirm Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <label class="terms"><input type="checkbox" required> I agree to terms and conditions</label>
+                <button type="submit" class="submit-btn">Create Account</button>
+                <p class="form-text">Already have an account? <a onclick="toggleAuthForm('login')">Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="stars"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="word">Welcome</span>
+                <span class="word">To</span>
+                <span class="word">Gamers</span>
+                <span class="word">Leisure</span>
+            </h1>
+            <p class="hero-subtitle">Master Every Game With Pro Tips & Connect With Gamers Worldwide</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('games').scrollIntoView({behavior: 'smooth'})">
+                    Explore Games
+                </button>
+                <button class="btn btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    Learn More
+                </button>
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <div class="gaming-device">
+                <i class="fas fa-laptop"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet New Peoples Section -->
+    <section class="community-section">
+        <div class="community-content">
+            <div class="community-icon">
+                <i class="fas fa-globe"></i>
+            </div>
+            <h2>Connect With Gamers Worldwide</h2>
+            <p>🌍 The Main Purpose Of This Website Is To Meet New Peoples To Play With From Any Country</p>
+            <div class="stats">
+                <div class="stat">
+                    <h3>50K+</h3>
+                    <p>Active Gamers</p>
+                </div>
+                <div class="stat">
+                    <h3>150+</h3>
+                    <p>Games Covered</p>
+                </div>
+                <div class="stat">
+                    <h3>200+</h3>
+                    <p>Countries</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Games Section -->
+    <section class="games-section" id="games">
+        <div class="section-header">
+            <h2>🎮 Popular Games</h2>
+            <p>Discover Pro Tips For Your Favorite Titles</p>
+        </div>
+
+        <div class="games-grid">
+            <!-- Valorant -->
+            <div class="game-card">
+                <div class="game-image valorant">
+                    <i class="fas fa-crosshairs"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Valorant</h3>
+                    <p class="game-quote">"Aim, Strategy, Victory"</p>
+                    <p class="game-description">Master tactical FPS gameplay with pro strategies</p>
+                    <div class="game-tags">
+                        <span>FPS</span>
+                        <span>Tactical</span>
+                        <span>Competitive</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Valorant')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- League of Legends -->
+            <div class="game-card">
+                <div class="game-image lol">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <div class="game-info">
+                    <h3>League of Legends</h3>
+                    <p class="game-quote">"Rise With Your Team"</p>
+                    <p class="game-description">Learn champion strategies and map control</p>
+                    <div class="game-tags">
+                        <span>MOBA</span>
+                        <span>Team</span>
+                        <span>Strategy</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('League of Legends')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Counter-Strike 2 -->
+            <div class="game-card">
+                <div class="game-image cs2">
+                    <i class="fas fa-bomb"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Counter-Strike 2</h3>
+                    <p class="game-quote">"Precision & Teamwork"</p>
+                    <p class="game-description">Dominate the battlefield with advanced tactics</p>
+                    <div class="game-tags">
+                        <span>FPS</span>
+                        <span>Competitive</span>
+                        <span>PvP</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Counter-Strike 2')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Dota 2 -->
+            <div class="game-card">
+                <div class="game-image dota">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Dota 2</h3>
+                    <p class="game-quote">"Ancient Battles Await"</p>
+                    <p class="game-description">Complex strategies and hero synergies explained</p>
+                    <div class="game-tags">
+                        <span>MOBA</span>
+                        <span>Complex</span>
+                        <span>Competitive</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Dota 2')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Fortnite -->
+            <div class="game-card">
+                <div class="game-image fortnite">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Fortnite</h3>
+                    <p class="game-quote">"Build, Fight, Win"</p>
+                    <p class="game-description">Master building mechanics and combat strategies</p>
+                    <div class="game-tags">
+                        <span>Battle Royale</span>
+                        <span>Building</span>
+                        <span>Action</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Fortnite')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Elden Ring -->
+            <div class="game-card">
+                <div class="game-image elden">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Elden Ring</h3>
+                    <p class="game-quote">"Embrace The Challenge"</p>
+                    <p class="game-description">Boss strategies and build optimization guides</p>
+                    <div class="game-tags">
+                        <span>RPG</span>
+                        <span>Action</span>
+                        <span>Dark Fantasy</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Elden Ring')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Minecraft -->
+            <div class="game-card">
+                <div class="game-image minecraft">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Minecraft</h3>
+                    <p class="game-quote">"Create Your World"</p>
+                    <p class="game-description">Building tips, farming guides, and survival tricks</p>
+                    <div class="game-tags">
+                        <span>Sandbox</span>
+                        <span>Building</span>
+                        <span>Adventure</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Minecraft')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Apex Legends -->
+            <div class="game-card">
+                <div class="game-image apex">
+                    <i class="fas fa-person-hiking"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Apex Legends</h3>
+                    <p class="game-quote">"Legend Status Awaits"</p>
+                    <p class="game-description">Character abilities and team coordination guides</p>
+                    <div class="game-tags">
+                        <span>Battle Royale</span>
+                        <span>Team</span>
+                        <span>Shooter</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Apex Legends')">View Tips</button>
+                </div>
+            </div>
+
+            <!-- Overwatch 2 -->
+            <div class="game-card">
+                <div class="game-image overwatch">
+                    <i class="fas fa-shield"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Overwatch 2</h3>
+                    <p class="game-quote">"Heroes Never Die"</p>
+                    <p class="game-description">Hero guides and team composition strategies</p>
+                    <div class="game-tags">
+                        <span>Team FPS</span>
+                        <span>Heroes</span>
+                        <span>Competitive</span>
+                    </div>
+                    <button class="game-btn" onclick="showGameTips('Overwatch 2')">View Tips</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Modal -->
+    <div class="tips-modal" id="tipsModal">
+        <div class="tips-container">
+            <span class="tips-close" onclick="closeTipsModal()">×</span>
+            <div class="tips-content">
+                <h2 id="tipsGameName">Game Tips</h2>
+                <div id="tipsList"></div>
+                <button class="tips-close-btn" onclick="closeTipsModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <h2>About Gamers Leisure</h2>
+            <p>Welcome to Gamers Leisure, your ultimate destination for gaming excellence and global community connection!</p>
+            
+            <div class="about-features">
+                <div class="feature">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Pro Tips & Strategies</h3>
+                    <p>Learn winning strategies from experienced gamers</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Global Community</h3>
+                    <p>Connect with 50K+ gamers from 200+ countries</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>All Games Covered</h3>
+                    <p>Tips for 150+ popular games and counting</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Guide</h3>
+                    <p>Get instant help from our advanced AI assistant</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2>Get In Touch</h2>
+            <p>Have questions or suggestions? We'd love to hear from you!</p>
+            
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <i class="fas fa-message"></i>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@gamersleisure.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Worldwide Community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gamers Leisure</h3>
+                <p>Your gateway to gaming excellence</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gamers Leisure. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="gamers.js"></script>
+</body>
+</html>
